@@ -36,7 +36,7 @@ jobs:
         id: run-test # using id to referr with if condition
         run: npm run test
       - name: Upload test report
-        if: steps.run-test.outcome == 'failure' #
+        if: failure() && steps.run-test.outcome == 'failure' # failure function returns true if previous jobs failed
         uses: actions/upload-artifact@v4
         with:
           name: test-report
